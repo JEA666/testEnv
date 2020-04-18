@@ -1,0 +1,9 @@
+# Ignored directorys
+**/.vagrant/
+**/.vscode/
+
+# Ignored files
+*.retry
+*.code-workspace
+*.vdi
+
