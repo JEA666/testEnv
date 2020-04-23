@@ -9,7 +9,7 @@
                   
       - name: test connection
         ping:
-        register: pong
+        register: result
 
       - debug:
-          var: pong.stdout_lines
+          var: result.ping
