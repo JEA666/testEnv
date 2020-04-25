@@ -30,8 +30,6 @@ Vagrant.configure(2) do |config|
       inst.vm.box = IMAGE_NAME
       inst.vm.hostname = item + DOMAIN
       inst.vm.network "private_network", ip: NODE_NET + "#{index + 10}", netmask: NETMASK
-#      inst.vm.provision "ansible" do |ansible|
-#        ansible.playbook = "./ansible/workerNodes.yml"
     end
   end
 end
