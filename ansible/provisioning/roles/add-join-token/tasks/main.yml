@@ -1,0 +1,21 @@
+---
+
+- name: Copy join token
+  block:
+
+  - name: Check for if token is allredy used
+    stat:
+      path: /etc/kubernetes/kubelet.conf
+    register: K8TOKEN_RESULT
+
+  - name: add nodes to cluster
+    shell: eval {{ hostvars['DUMMY_HOST']['JOIN_TOKEN_NEW'] }}
+    register: PLAY05_RESULTS
+    when: K8TOKEN_RESULT.stat.exists == False
+
+  - debug: msg="{{ PLAY05_RESULTS.stdout }}"
+    run_once: True
+
+  become: yes
+  become_user: root
+  

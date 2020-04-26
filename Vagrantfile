@@ -3,7 +3,7 @@
 
 require './defaults/vagrant.rb'
 
-instances = ['k8s-manager', 'jenkins', 'node01']
+instances = ["k8s-master", "node01", "node02"] # Add servers at you need them: jenkins
 
 Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
@@ -13,15 +13,15 @@ Vagrant.configure(2) do |config|
     vb.memory = RAM
     vb.cpus = CPU
   end
-
+  
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "vv"
     ansible.limit = "all"                
     ansible.playbook = PLAYBOOK                
     ansible.groups = {
-      "bootStrap" => ["k8s-manager"],
-      "infra" => ["jenkins"],
-      "nodes" => ["node01"]
+      "bootstrap" => ["k8s-master"],
+#      "infra" => ["jenkins"],
+      "nodes" => ["node01", "node02"]
       }
   end
 
@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "#{item}" do |inst|
       inst.vm.box = IMAGE_NAME
       inst.vm.hostname = item + DOMAIN
-      inst.vm.network "private_network", ip: NODE_NET + "#{index + 10}", netmask: NETMASK
+      inst.vm.network "private_network", ip: NODE_NET + "#{index + 10}", netmask: NETMASK   
     end
   end
 end

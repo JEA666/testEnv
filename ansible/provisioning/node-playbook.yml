@@ -1,4 +1,4 @@
----
+# Step 2.1 Installerer docker og avhengiheter
 - hosts: all
   become: true
   tasks:
@@ -43,6 +43,7 @@
       name: vagrant
       group: docker
 
+# Step 2.2 Kublet starter ikke vis systemet har swap enabled
   - name: Remove swapfile from /etc/fstab
     mount:
       name: "{{ item }}"
@@ -56,6 +57,7 @@
     command: swapoff -a
     when: ansible_swaptotal_mb > 0
 
+# Step 2.3 Innstallasjon av kublet, kubeadm og kubectl
   - name: Add an apt signing key for Kubernetes
     apt_key:
       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -89,14 +91,19 @@
       daemon_reload: yes
       state: restarted
 
+# 2.3 Starte opp klynga
   - name: Initialize the Kubernetes cluster using kubeadm
     command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
 
-  - name: Setup kubeconfig for vagrant user
-    command: "{{ item }}"
-    with_items:
-     - mkdir -p /home/vagrant/.kube
-     - cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
-     - chown vagrant:vagrant /home/vagrant/.kube/config
+# 3.2
+  - name: Copy the join command to server location
+    copy: src=join-command dest=/tmp/join-command.sh mode=0777
 
-     
+  - name: Join the node to cluster
+    command: sh /tmp/join-command.sh
+
+# 2.7
+  handlers:
+    - name: docker status
+      service: name=docker state=started
+

@@ -1,0 +1,50 @@
+---
+
+- name: Config K8 users
+  block:
+
+  - name: Check if admin.conf exist
+    stat:
+      path: /etc/kubernetes/admin.conf
+    register: K8CONFIG_RESULT
+  
+  - name: create k8 home dir
+    file:
+      path: /home/vagrant/.kube
+      state: directory
+      owner: vagrant
+      group: vagrant  
+    
+  - name: Copy files to home dir
+    copy:
+      src: /etc/kubernetes/admin.conf
+      dest: /home/vagrant/.kube/config
+      owner: vagrant
+      group: vagrant 
+      remote_src: yes
+    when: K8CONFIG_RESULT.stat.exists == true
+
+  - name: Sync admin.conf between nodes
+    synchronize:
+      src: /etc/kubernetes/admin.conf
+      dest: /etc/kubernetes/admin.conf
+    delegate_to: k8boot
+    when: K8CONFIG_RESULT.stat.exists == false
+
+  # - name: Fetch admin.conf for nodes
+  #   become: false
+  #   fetch:
+  #     src: /etc/kubernetes/admin.conf
+  #     dest: ./config_files/k8
+  #     flat: yes
+  #   when: K8CONFIG_RESULT.stat.exists == true
+
+  # - name: Copy file to user dir
+  #   copy: 
+  #     src: ./config_files/k8
+  #     dest: /home/vagrant/.kube
+  #     owner: vagrant
+  #     group: vagrant
+      
+  become: yes
+  become_user: root

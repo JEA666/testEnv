@@ -1,0 +1,25 @@
+---
+
+- name: Install docker and dependencies
+  block:
+
+  - name: "Check if Docker is installed"
+    package_facts:
+      manager: "apt"
+
+  - name: Install docker and its dependecies
+    apt: 
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
+    notify:
+      - docker status
+    when: "'docker-ce' not in ansible_facts.packages"
+
+  become: yes
+  become_user: root

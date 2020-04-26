@@ -1,0 +1,41 @@
+---
+
+- name: Install and configure K8
+  block:
+
+  - name: "Check if K8 is installed"
+    package_facts:
+      manager: "apt"
+
+  - name: Install K8 binaries
+    apt: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop:
+        - kubelet 
+        - kubeadm 
+        - kubectl
+    when: "'kubelet' not in ansible_facts.packages" 
+
+  - name: Add config file
+    file:
+      path: /etc/default/kubelet
+      state: touch
+    when: "'kubelet' not in ansible_facts.packages"       
+  
+  - name: Configure node ip
+    lineinfile:
+      path: /etc/default/kubelet
+      line: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_facts.eth1.ipv4.address }}
+    when: "'kubelet' not in ansible_facts.packages"
+
+  - name: Restart kubelet
+    service:
+      name: kubelet
+      daemon_reload: yes
+      state: restarted
+    when: "'kubelet' not in ansible_facts.packages"
+    
+  become: yes
+  become_user: root
