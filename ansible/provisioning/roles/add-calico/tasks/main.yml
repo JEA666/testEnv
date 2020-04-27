@@ -6,14 +6,15 @@
   - name: Check for Calico
     stat:
       path: /var/lib/calico
-    register: CALICO_RESULT
-  
-  - debug: msg="{{ CALICO_RESULT.stat.exists }}"
+    register: calicoResult
+
+# Enable for debug   
+#  - debug: msg="{{ CALICO_RESULT.stat.exists }}"
 
   - name: Install Calico pod network
     become: false
     command: kubectl create -f https://docs.projectcalico.org/v3.8/getting-started/kubernetes/installation/hosted/calico.yaml
-    when: CALICO_RESULT.stat.exists == False
+    when: calicoResult.stat.exists == False
 
   become: yes
   become_user: root

@@ -3,15 +3,9 @@
 - name: Generate token
   block:
 
-  # - name: check if token is created
-  #   shell: kubectl get namespaces
-  #   register: CREATE_TOKEN
-  #   ignore_errors: true
-
   - name: Generate join command
     command: kubeadm token create --print-join-command
     register: JOIN_TOKEN
-    # when: CREATE_TOKEN.rc !=1
     run_once: True
 
   - debug: msg="{{ JOIN_TOKEN.stdout }}"

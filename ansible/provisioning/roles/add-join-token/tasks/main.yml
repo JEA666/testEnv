@@ -6,14 +6,11 @@
   - name: Check for if token is allredy used
     stat:
       path: /etc/kubernetes/kubelet.conf
-    register: K8TOKEN_RESULT
+    register: k8TokenResult
 
   - name: add nodes to cluster
     shell: eval {{ hostvars['DUMMY_HOST']['JOIN_TOKEN_NEW'] }}
-    register: PLAY05_RESULTS
-    when: K8TOKEN_RESULT.stat.exists == False
-
-  - debug: msg="{{ PLAY05_RESULTS.stdout }}"
+    when: k8TokenResult.stat.exists == False
     run_once: True
 
   become: yes
