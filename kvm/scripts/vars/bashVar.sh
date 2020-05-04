@@ -1,0 +1,11 @@
+dependencies=(
+    ""
+)
+
+apps=(
+    ""
+)
+
+GOPATH=
+
+PATH=
