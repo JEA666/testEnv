@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/local/go/bin
+source ./scripts/vars/bashVar.sh
+
 # Install Terraform plugin
 #su ${SUDO_USER}
 mkdir -p ${GOPATH}/src/github.com/dmacvicar;

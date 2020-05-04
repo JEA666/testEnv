@@ -1,11 +1,13 @@
 dependencies=(
-    ""
+  "qemu-kvm"
+  "libvirt-daemon-system"
+  "libvirt-clients"
+  "bridge-utils"
+  "virt-manager"
 )
 
-apps=(
-    ""
-)
+# apps=(
+#     ""
+# )
 
-GOPATH=
-
-PATH=
+GOPATH=/home/jea/go
