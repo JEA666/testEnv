@@ -11,7 +11,7 @@
   - name: add nodes to cluster
     shell: eval {{ hostvars['DUMMY_HOST']['JOIN_TOKEN_NEW'] }}
     when: k8TokenResult.stat.exists == False
-    run_once: True
+   
 
   become: yes
   become_user: root

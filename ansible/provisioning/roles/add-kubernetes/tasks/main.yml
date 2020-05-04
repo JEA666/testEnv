@@ -36,6 +36,7 @@
       daemon_reload: yes
       state: restarted
     when: "'kubelet' not in ansible_facts.packages"
+    run_once: True
     
   become: yes
   become_user: root

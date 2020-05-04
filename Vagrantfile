@@ -29,7 +29,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "#{item}" do |inst|
       inst.vm.box = IMAGE_NAME
       inst.vm.hostname = item + DOMAIN
-      inst.vm.network "private_network", ip: NODE_NET + "#{index + 10}", netmask: NETMASK   
+      inst.vm.network "private_network", ip: NODE_NET + "#{index + 10}", netmask: NETMASK         
     end
   end
 end

@@ -23,6 +23,7 @@
       group: vagrant 
       remote_src: yes
     when: k8ConfigResult.stat.exists == true
+    run_once: True
 
   - name: Sync admin.conf between nodes
     synchronize:
