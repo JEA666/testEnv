@@ -10,8 +10,8 @@ if [ "$EUID" -ne 0 ]
 fi
 
 export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/local/go/bin
-source ./script/defaults/bashVar.sh
-source ./script/func/aptInstall.sh
+source ./scripts/vars/bashVar.sh
+source ./scripts/func/aptInstall.sh
 
 # Update ubuntu first
 #apt-get update && apt-get upgrade -y

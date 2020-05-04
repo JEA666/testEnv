@@ -1,6 +1,7 @@
 # Ignored directorys
 **/.vagrant/
 **/.vscode/
+**/.terraform.d/
 
 # Ignored files
 *.retry
