@@ -6,8 +6,9 @@ dependencies=(
   "virt-manager"
 )
 
-# apps=(
-#     ""
-# )
+groups=(
+  "kvm"
+  "libvirt"
+)
 
 GOPATH=/home/jea/go

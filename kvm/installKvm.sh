@@ -9,8 +9,9 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-source ./scripts/vars/bashVar.sh
-source ./scripts/func/installPackage.sh
+source ./scripts/variables/bashVar.sh
+source ./scripts/functions/installPackage.sh
+source ./scripts/functions/addUser.sh
 
 # Update ubuntu first
 #apt-get update && apt-get upgrade -y
@@ -19,10 +20,9 @@ source ./scripts/func/installPackage.sh
 package=${dependencies[@]}
 installPackage
 
-# Configuration
-# Add users
-adduser ${SUDO_USER} libvirt
-adduser ${SUDO_USER} kvm 
+#Add user to KVM groups
+userGroups=${groups[@]}
+addUser
 
 modprobe vhost_net
 lsmod| grep vhost
