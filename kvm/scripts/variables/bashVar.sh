@@ -4,11 +4,25 @@ dependencies=(
   "libvirt-clients"
   "bridge-utils"
   "virt-manager"
-)
+  )
 
 groups=(
   "kvm"
   "libvirt"
-)
+  )
 
-GOPATH=/home/jea/go
+gitPath=(
+  "/src/github.com/dmacvicar"
+  )
+
+pluginDir=(
+  "/terraform-provider-libvirt"
+  )
+
+gitUrl=(
+  "https://github.com/dmacvicar/terraform-provider-libvirt.git"
+  )
+
+terraformPath=(
+  "/.terraform.d/plugins"
+  )

@@ -1,18 +1,36 @@
 #!/bin/bash
 
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:/usr/local/go/bin
-source ./scripts/vars/bashVar.sh
+# You need GO and Terraform installed for this to work.
+
+source ./scripts/variables/bashVar.sh
 
 # Install Terraform plugin
-#su ${SUDO_USER}
-mkdir -p ${GOPATH}/src/github.com/dmacvicar;
-cd ${GOPATH}/src/github.com/dmacvicar
-#sudo -u ${SUDO_USER} 
-git clone https://github.com/dmacvicar/terraform-provider-libvirt.git
-cd $GOPATH/src/github.com/dmacvicar/terraform-provider-libvirt
-echo $PATH
-#which go
-#echo $?
-pwd
-#sudo -u jea 
-make install
+# mkdir src repo directory
+if [ -d "${GOPATH}${gitPath}" ]; then
+  echo "${GOPATH}${gitPath} allredy exist"
+else
+  echo "Make GO src dir"
+  mkdir -p ${GOPATH}${gitPath};
+fi
+
+# Download src repo
+if [ -d "${GOPATH}${gitPath}${pluginDir}/.git" ]; then
+  echo "Git repo allredy exist"
+  echo "Cd to git repo and check for updates"
+  cd ${GOPATH}${gitPath}${pluginDir} && git pull
+else
+  echo "Cd to git repo"
+  cd ${GOPATH}${gitPath}
+  echo "Clone git repo"
+  git clone ${gitUrl}
+fi
+
+# Build from src repo
+echo "Change to git repo dir"
+cd ${GOPATH}${gitPath}${pluginDir}
+
+echo "Make terraform libvirt plugin"
+ make install
+
+echo "Copy plugin to Terraform folder"
+cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}

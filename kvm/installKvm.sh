@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# you need GO and Terraform installed for this to work.
+# You need GO and Terraform installed for this to work.
 
 # Check for sudo
 if [ "$EUID" -ne 0 ]
