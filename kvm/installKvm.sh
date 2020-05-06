@@ -3,9 +3,9 @@
 # You need GO and Terraform installed for this to work.
 
 # Check for sudo
-if [ "$EUID" -ne 0 ]
-  then echo "You need to run as root"
-       echo "sudo ./installKvm.sh"
+if [ "$EUID" -ne 0 ]; then 
+  echo "You need to run as root"
+  echo "sudo ./installKvm.sh"
   exit
 fi
 
