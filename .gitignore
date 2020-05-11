@@ -2,9 +2,12 @@
 **/.vagrant/
 **/.vscode/
 **/.terraform.d/
+**/.terraform/
 
 # Ignored files
 *.retry
 *.code-workspace
 *.vdi
+*.tfstate
+*.backup
 
