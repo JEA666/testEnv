@@ -6,7 +6,7 @@ provider "libvirt" {
 resource "libvirt_pool" "tf_ubuntu" {
   name = "tf_ubuntu"
   type = "dir"
-  path = "/tmp/tf-ubuntu"
+  path = "/var/lib/libvirt/images/tf-ubuntu"
 }
 
 resource "libvirt_volume" "ubuntu-qcow2" {
