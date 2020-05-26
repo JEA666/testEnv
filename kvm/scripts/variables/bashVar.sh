@@ -1,8 +1,3 @@
-# Vars 
-downloads=(
-   "/home/ubuntu/Downloads"
-   )
-
 # Vars for KVM
 dependencies=(
   "qemu-kvm"
@@ -24,7 +19,7 @@ tfVersion=(
   ) 
 
 # Vars for Terraform libvirt plugin
-gitPath=(
+srcPath=(
   "/src/github.com/dmacvicar"
   )
 
@@ -58,3 +53,11 @@ goVars=(
   "GOPATH=${HOME}/go"
   "GOBIN=${HOME}/go/bin"
   )
+
+# Vars 
+directories=(
+   "${HOME}/Downloads"
+   "${GOPATH}/src/github.com/dmacvicar"
+   "${GOBIN}"
+   "${HOME}/.terraform.d/plugins"
+   )

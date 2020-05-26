@@ -4,44 +4,26 @@
 
 source ./scripts/variables/bashVar.sh
 
-if [ -d "${downloads}" ]; then 
-  echo "Directory exist"
-else
-  echo "Creating ${downloads}"
-  mkdir ${downloads}
-fi
-
 # # Install Terraform
 # cd ${HOME}/Downloads
-# wget https://releases.hashicorp.com/terraform/${tfVersion}/terraform_${tfVersion}_linux_amd64.zip
-
-# # Install Terraform plugin
-# # mkdir src repo directory
-# if [ -d "${GOPATH}${gitPath}" ]; then
-#   echo "${GOPATH}${gitPath} allredy exist"
-# else
-#   echo "Make GO src dir"
-#   mkdir -p ${GOPATH}${gitPath};
-# fi
+# wget -N https://releases.hashicorp.com/terraform/${tfVersion}/terraform_${tfVersion}_linux_amd64.zip
 
 # # Download src repo
-# if [ -d "${GOPATH}${gitPath}${pluginDir}/.git" ]; then
-#   echo "Git repo allredy exist"
-#   echo "Cd to git repo and check for updates"
-#   cd ${GOPATH}${gitPath}${pluginDir} && git pull
+# if [ -d "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
+#   printf "%s\n" "Git repo allredy exist"
+#   printf "%s\n" "Cd to git repo and check for updates"
+#   cd ${GOPATH}${srcPath}${pluginDir} && git pull
 # else
-#   echo "Cd to git repo"
-#   cd ${GOPATH}${gitPath}
-#   echo "Clone git repo"
-#   git clone ${gitUrl}
+#   printf "%s\n" "Cd to git repo and clone"
+#   cd ${GOPATH}${srcPath} && git clone ${gitUrl}
 # fi
 
 # # Build from src repo
-# echo "Change to git repo dir"
-# cd ${GOPATH}${gitPath}${pluginDir}
+# printf "%s\n" "Change to git repo dir"
+# cd ${GOPATH}${srcPath}${pluginDir}
 
-# echo "Make terraform libvirt plugin"
+# printf "%s\n" "Make terraform libvirt plugin"
 #  make install
 
-# echo "Copy plugin to Terraform folder"
+# printf "%s\n" "Copy plugin to Terraform folder"
 # cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
