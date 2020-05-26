@@ -5,7 +5,7 @@ addUser(){
       echo "${g} exist"
       
     else
-      adduser ${SUDO_USER} ${g}
+      sudo adduser ${SUDO_USER} ${g}
     fi
 
   done

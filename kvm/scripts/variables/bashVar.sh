@@ -5,12 +5,18 @@ dependencies=(
   "libvirt-clients"
   "bridge-utils"
   "virt-manager"
+  "libvirt-dev"
   )
 
 groups=(
   "kvm"
   "libvirt"
   )
+
+# Vars for Terraform install
+tfVersion=(
+  "0.12.25"
+  ) 
 
 # Vars for Terraform libvirt plugin
 gitPath=(
@@ -30,9 +36,17 @@ terraformPath=(
   )
 
 # Vars for Golang innstall
-appPath=("/usr/local/go/bin")
+installPath=(
+  "${HOME}/git/testEnv/kvm"
+  )
 
-GOPATH=("${HOME}/go")
+appPath=(
+  "/usr/local"
+  )
+
+GOPATH=(
+  "${HOME}/go"
+  )
 
 goVars=(
   "PATH=$PATH:/usr/local/go/bin"

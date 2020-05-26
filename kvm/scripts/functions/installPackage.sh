@@ -5,7 +5,7 @@ installPackage(){
       if [ ${?} == 0 ]; then
         echo "${i} is alredy installed"
       else
-        apt install ${i} -y 
+        sudo apt install ${i} -y 
       fi
     
   done

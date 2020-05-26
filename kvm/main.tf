@@ -1,4 +1,10 @@
 # instance the provider
+terraform {
+  backend "local" {
+    path = "/home/spk.no/jea/tfstate/terraform.tfstate"
+  }
+}
+
 provider "libvirt" {
   uri = "qemu:///system"
 }
@@ -32,9 +38,10 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 }
 
 resource "libvirt_domain" "domain-ubuntu" {
-  name   = "ubuntu-terraform"
+  name   = "manager0${count.index}+1"
   memory = "512"
   vcpu   = 1
+  count = 1
 
   cloudinit = libvirt_cloudinit_disk.commoninit.id
 

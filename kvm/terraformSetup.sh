@@ -4,33 +4,44 @@
 
 source ./scripts/variables/bashVar.sh
 
-# Install Terraform plugin
-# mkdir src repo directory
-if [ -d "${GOPATH}${gitPath}" ]; then
-  echo "${GOPATH}${gitPath} allredy exist"
+if [ -d ${HOME}/Downlads ]; then 
+  echo "Directory exist"
 else
-  echo "Make GO src dir"
-  mkdir -p ${GOPATH}${gitPath};
+  mkdir ${HOME}/Downloads
 fi
 
-# Download src repo
-if [ -d "${GOPATH}${gitPath}${pluginDir}/.git" ]; then
-  echo "Git repo allredy exist"
-  echo "Cd to git repo and check for updates"
-  cd ${GOPATH}${gitPath}${pluginDir} && git pull
-else
-  echo "Cd to git repo"
-  cd ${GOPATH}${gitPath}
-  echo "Clone git repo"
-  git clone ${gitUrl}
-fi
+ls -la
+# # Install Terraform
+# cd ${HOME}/Downloads
+# wget https://releases.hashicorp.com/terraform/${tfVersion}/terraform_${tfVersion}_linux_amd64.zip
 
-# Build from src repo
-echo "Change to git repo dir"
-cd ${GOPATH}${gitPath}${pluginDir}
+# # Install Terraform plugin
+# # mkdir src repo directory
+# if [ -d "${GOPATH}${gitPath}" ]; then
+#   echo "${GOPATH}${gitPath} allredy exist"
+# else
+#   echo "Make GO src dir"
+#   mkdir -p ${GOPATH}${gitPath};
+# fi
 
-echo "Make terraform libvirt plugin"
- make install
+# # Download src repo
+# if [ -d "${GOPATH}${gitPath}${pluginDir}/.git" ]; then
+#   echo "Git repo allredy exist"
+#   echo "Cd to git repo and check for updates"
+#   cd ${GOPATH}${gitPath}${pluginDir} && git pull
+# else
+#   echo "Cd to git repo"
+#   cd ${GOPATH}${gitPath}
+#   echo "Clone git repo"
+#   git clone ${gitUrl}
+# fi
 
-echo "Copy plugin to Terraform folder"
-cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
+# # Build from src repo
+# echo "Change to git repo dir"
+# cd ${GOPATH}${gitPath}${pluginDir}
+
+# echo "Make terraform libvirt plugin"
+#  make install
+
+# echo "Copy plugin to Terraform folder"
+# cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
