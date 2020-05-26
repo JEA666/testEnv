@@ -4,13 +4,13 @@
 
 source ./scripts/variables/bashVar.sh
 
-if [ -d ${HOME}/Downlads ]; then 
+if [ -d "${downloads}" ]; then 
   echo "Directory exist"
 else
-  mkdir ${HOME}/Downloads
+  echo "Creating ${downloads}"
+  mkdir ${downloads}
 fi
 
-ls -la
 # # Install Terraform
 # cd ${HOME}/Downloads
 # wget https://releases.hashicorp.com/terraform/${tfVersion}/terraform_${tfVersion}_linux_amd64.zip

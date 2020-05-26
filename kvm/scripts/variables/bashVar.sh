@@ -1,3 +1,8 @@
+# Vars 
+downloads=(
+   "/home/ubuntu/Downloads"
+   )
+
 # Vars for KVM
 dependencies=(
   "qemu-kvm"
