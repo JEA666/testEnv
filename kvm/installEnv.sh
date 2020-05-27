@@ -9,7 +9,7 @@ source ./scripts/variables/bashVar.sh
 source ./scripts/functions/functions.sh
 
 # Update ubuntu first
-apt-get update && apt-get upgrade -y
+sudo apt-get update && apt-get upgrade -y
 
 # Check and create directories
 dir=${directories[@]}
