@@ -38,7 +38,7 @@ installApt(){
 downloadWget(){
   cd "${HOME}/Downloads"
   for i in ${package[wget]}; do
-    if [ -f ${i} == 0 ]; then
+    if [ -f ${i} ]; then
       "${i} is allredy downloaded"
     else
       printf "%s\n" "Downloading ${i}"

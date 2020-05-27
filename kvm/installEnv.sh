@@ -26,7 +26,7 @@ downloadGit
 if [ -x "$(command -v go)" ]; then
   printf "%s\n" "Go allredy installed"
 else
-  printf "%s\n" "install go"
+  printf "install go\n"
   cd ${HOME}/Downloads
 #  wget -N https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
   sudo tar -C ${appPath} -xzf go1.14.2.linux-amd64.tar.gz
