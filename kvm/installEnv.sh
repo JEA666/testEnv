@@ -10,6 +10,7 @@ source ./scripts/functions/functions.sh
 
 # Update ubuntu first
 sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get unzip
 
 # Check and create directories
 dir=${directories[@]}
