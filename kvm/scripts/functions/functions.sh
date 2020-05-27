@@ -53,7 +53,7 @@ downloadGit(){
       printf "%s\n" "${i} is allredy downloaded"
     else
       printf "%s\n" "Downloading ${i}"
-      git clone ${i} 
+      cd ${GOPATH}${srcPath} && git clone ${i}
     fi
   done
 }
