@@ -16,10 +16,10 @@ dir=${directories[@]}
 createDir
 
 # Download package and install dependencies
-package=${dependencies[@]}
+package=${dependencies[wget]}
 downloadWget
 
-package=${dependencies[@]}
+package=${dependencies[git]}
 downloadGit
 
 # Install Go

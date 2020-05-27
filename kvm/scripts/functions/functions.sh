@@ -27,7 +27,7 @@ installApt(){
   for i in ${package[apt]}; do
     dpkg -s ${i} > /dev/null 2>&1
     if [ ${?} == 0 ]; then
-      "${i} is allredy installed"
+      printf "%s\n" "${i} is allredy installed"
     else
       printf "%s\n" "Installing ${i}"
       sudo apt install ${i} -y 
@@ -37,9 +37,9 @@ installApt(){
 
 downloadWget(){
   cd "${HOME}/Downloads"
-  for i in ${package[wget]}; do
+  for i in ${package[@]}; do
     if [ -f ${i} ]; then
-      "${i} is allredy downloaded"
+      printf "%s\n" "${i} is allredy downloaded"
     else
       printf "%s\n" "Downloading ${i}"
       wget -N ${i} 
@@ -49,9 +49,9 @@ downloadWget(){
 
 downloadGit(){
   cd "${HOME}/Downloads"
-  for i in ${package[git]}; do
+  for i in ${package[@]}; do
     if [ -f ${i} ]; then
-      "${i} is allredy downloaded"
+      printf "%s\n" "${i} is allredy downloaded"
     else
       printf "%s\n" "Downloading ${i}"
       git clone ${i} 
