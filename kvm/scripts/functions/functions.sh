@@ -49,7 +49,7 @@ downloadWget(){
 
 downloadGit(){
   for i in ${package[@]}; do
-    if [ "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
+    if [ -d "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
       printf "%s\n" "${i} is allredy downloaded"
     else
       printf "%s\n" "Downloading ${i}"
