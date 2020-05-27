@@ -14,9 +14,9 @@ addUser(){
 createDir(){
   for i in ${dir[@]}; do
     if [ -d "${i}" ]; then 
-      printf "%s\n" "${i} exist"
+      printf "\e[1;32m%-6s\e[m\n" "${i} exist"
     else
-      printf "%s\n" "Creating ${i}"
+      printf "\e[1;33m%-6s\e[m\n" "Creating ${i}"
       mkdir -p ${i}
     fi
   done
@@ -27,9 +27,9 @@ installApt(){
   for i in ${package[apt]}; do
     dpkg -s ${i} > /dev/null 2>&1
     if [ ${?} == 0 ]; then
-      printf "%s\n" "${i} is allredy installed"
+      printf "\e[1;32m%-6s\e[m\n" "${i} is allredy installed"
     else
-      printf "%s\n" "Installing ${i}"
+      printf "\e[1;33m%-6s\e[m\n" "Installing ${i}"
       sudo apt install ${i} -y 
     fi
   done
@@ -39,9 +39,9 @@ downloadWget(){
   cd "${HOME}/Downloads"
   for i in ${package[@]}; do
     if [ -f ${i##*/} ]; then
-      printf "%s\n" "${i##*/} is allredy downloaded"
+      printf "\e[1;32m%-6s\e[m\n" "${i##*/} is allredy downloaded"
     else
-      printf "%s\n" "Downloading ${i##*/}"
+      printf "\e[1;33m%-6s\e[m\n" "Downloading ${i##*/}"
       wget -N ${i} 
     fi
   done
@@ -50,9 +50,9 @@ downloadWget(){
 downloadGit(){
   for i in ${package[@]}; do
     if [ -d "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
-      printf "%s\n" "${i} is allredy downloaded"
+      printf "\e[1;32m%-6s\e[m\n" "${i} is allredy downloaded"
     else
-      printf "%s\n" "Downloading ${i}"
+      printf "\e[1;33m%-6s\e[m\n" "Downloading ${i}"
       cd ${GOPATH}${srcPath} && git clone ${i}
     fi
   done
