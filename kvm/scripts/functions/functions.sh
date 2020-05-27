@@ -38,10 +38,10 @@ installApt(){
 downloadWget(){
   cd "${HOME}/Downloads"
   for i in ${package[@]}; do
-    if [ -f ${i} ]; then
-      printf "%s\n" "${i} is allredy downloaded"
+    if [ -f ${i##*/} ]; then
+      printf "%s\n" "${i##*/} is allredy downloaded"
     else
-      printf "%s\n" "Downloading ${i}"
+      printf "%s\n" "Downloading ${i##*/}"
       wget -N ${i} 
     fi
   done
