@@ -9,7 +9,7 @@ source ./scripts/variables/bashVar.sh
 source ./scripts/functions/functions.sh
 
 # Update ubuntu first
-sudo apt-get update && apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 # Check and create directories
 dir=${directories[@]}
@@ -24,13 +24,11 @@ downloadGit
 
 # Install Go
 if [ -x "$(command -v go)" ]; then
-  printf "%s\n" "Go allredy installed"
+  printf "\e[1;32m%-6s\e[m\n" "Go allredy installed"
 else
-  printf "install go\n"
+  printf "\e[1;33m%-6s\e[m\n" "install go\n"
   cd ${HOME}/Downloads
-#  wget -N https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
   sudo tar -C ${appPath} -xzf go1.14.2.linux-amd64.tar.gz
-#  mkdir -p ${GOPATH}/bin
   for i in ${goVars[@]}; do
     grep -qxF "export ${i}" ${HOME}/.profile
     if [ $? -ne 0]; then
@@ -43,35 +41,34 @@ source ${HOME}/.profile
 go version
 
 # Install Terraform and libvirt plugin
-# if [ -x "$(command -v terraform)" ]; then
-#   printf "%s\n" "Terraform allredy installed"
-# else
-#   printf "%s\n" "install Terraform"
-#   cd ${HOME}/Downloads
-# #  wget -N https://releases.hashicorp.com/terraform/${tfVersion}/terraform_${tfVersion}_linux_amd64.zip
-#   unzip terraform_${tfVersion}_linux_amd64.zip
-#   sudo mv terraform /usr/local/bin/
-#   terraform --version
-# fi
+if [ -x "$(command -v terraform)" ]; then
+  printf "\e[1;32m%-6s\e[m\n" "Terraform allredy installed"
+else
+  printf "\e[1;33m%-6s\e[m\n" "install Terraform"
+  cd ${HOME}/Downloads
+  unzip terraform_0.12.25_linux_amd64.zip
+  sudo mv terraform /usr/local/bin/
+  terraform --version
+fi
 
 # # Download src repo
 # if [ -d "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
-#   printf "%s\n" "Git repo allredy exist"
-#   printf "%s\n" "Cd to git repo and check for updates"
+#   printf "\e[1;32m%-6s\e[m\n" "Git repo allredy exist"
+#   printf "\e[1;32m%-6s\e[m\n" "Cd to git repo and check for updates"
 #   cd ${GOPATH}${srcPath}${pluginDir} && git pull
 # else
-#   printf "%s\n" "Cd to git repo and clone"
+#   printf "\e[1;32m%-6s\e[m\n" "Cd to git repo and clone"
 #   cd ${GOPATH}${srcPath} && git clone ${gitUrl}
 # fi
 
 # # Build from src repo
-# printf "%s\n" "Change to git repo dir"
+# printf "\e[1;32m%-6s\e[m\n" "Change to git repo dir"
 # cd ${GOPATH}${srcPath}${pluginDir}
 
-# printf "%s\n" "Make terraform libvirt plugin"
+# printf "\e[1;32m%-6s\e[m\n" "Make terraform libvirt plugin"
 #  make install
 
-# printf "%s\n" "Copy plugin to Terraform folder"
+# printf "\e[1;32m%-6s\e[m\n" "Copy plugin to Terraform folder"
 # cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
 
 
