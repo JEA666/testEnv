@@ -4,7 +4,7 @@ dependencies=(
   unzip
   make
   qemu-kvm
-  libvirt-daemon-system
+  libvirt-bin
   bridge-utils
   virt-manager
   libvirt-dev

@@ -19,7 +19,7 @@ resource "libvirt_volume" "ubuntu-qcow2" {
   name = "ubuntu-qcow2"
   pool = libvirt_pool.tf_ubuntu.name
 #  source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
-  source = "/home/spk.no/jea/Downloads/image/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
+  source = "/home/spk.no/jea/Downloads/image/bionic-server-cloudimg-amd64.img"
   format = "qcow2"
 }
 
@@ -39,9 +39,9 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 }
 
 resource "libvirt_domain" "domain-ubuntu" {
-  name   = "manager0${count.index}+1"
-  memory = "512"
-  vcpu   = 1
+  name   = "manager0${count.index}"
+  memory = "1024"
+  vcpu   = 2
   count = 1
 
   cloudinit = libvirt_cloudinit_disk.commoninit.id

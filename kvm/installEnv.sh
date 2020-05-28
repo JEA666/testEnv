@@ -46,12 +46,12 @@ virsh list --all
 if [ -x "$(command -v go)" ]; then
   printf "\e[1;32m%-6s\e[m\n" "Go allredy installed"
 else
-  printf "\e[1;33m%-6s\e[m\n" "install go\n"
+  printf "\e[1;33m%-6s\e[m\n" "install go"
   cd ${HOME}/Downloads
   sudo tar -C ${appPath} -xzf go1.14.2.linux-amd64.tar.gz
   for i in ${goVars[@]}; do
     grep -qxF "export ${i}" ${HOME}/.profile
-    if [ $? -ne 0]; then
+    if [ $? -ne 0 ]; then
       echo "export ${i}" >> ${HOME}/.profile
     fi
   done
