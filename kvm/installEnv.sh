@@ -26,7 +26,7 @@ downloadGit
 
 # Download and install all dependencies and KVM
 package=${dependencies[@]}
-installPackage
+installApt
 
 #Add user to KVM groups
 userGroups=${groups[@]}
