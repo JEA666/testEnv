@@ -25,7 +25,7 @@ package=${dependencies[git]}
 downloadGit
 
 # Download and install all dependencies and KVM
-package=${dependencies[@]}
+package=${dependencies[apt]}
 installApt
 
 #Add user to KVM groups

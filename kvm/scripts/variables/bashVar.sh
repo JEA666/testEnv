@@ -5,7 +5,6 @@ dependencies=(
   make
   qemu-kvm
   libvirt-daemon-system
-  libvirt-clients
   bridge-utils
   virt-manager
   libvirt-dev
