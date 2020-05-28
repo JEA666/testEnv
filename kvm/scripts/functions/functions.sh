@@ -24,7 +24,7 @@ createDir(){
 
 # Function for apt packege
 installApt(){
-  for i in ${package[apt]}; do
+  for i in ${package[@]}; do
     dpkg -s ${i} > /dev/null 2>&1
     if [ ${?} == 0 ]; then
       printf "\e[1;32m%-6s\e[m\n" "${i} is allredy installed"

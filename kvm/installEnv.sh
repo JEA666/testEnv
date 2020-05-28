@@ -33,7 +33,7 @@ userGroups=${groups[@]}
 addUser
 
 # Configure network
-modprobe vhost_net
+sudo modprobe vhost_net
 lsmod| grep vhost
 echo "vhost_net" | sudo tee -a /etc/modules
 
