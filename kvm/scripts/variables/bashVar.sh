@@ -1,6 +1,8 @@
 # Vars for KVM
 dependencies=(
   ["apt"]="
+  unzip
+  make
   qemu-kvm
   libvirt-daemon-system
   libvirt-clients

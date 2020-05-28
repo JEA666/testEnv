@@ -47,10 +47,13 @@ downloadWget(){
   done
 }
 
+# Does not support more sources :(
 downloadGit(){
   for i in ${package[@]}; do
     if [ -d "${GOPATH}${srcPath}${pluginDir}/.git" ]; then
-      printf "\e[1;32m%-6s\e[m\n" "${i} is allredy downloaded"
+      printf "\e[1;32m%-6s\e[m\n" "${i} is allredy downloaded
+      printf "\e[1;32m%-6s\e[m\n" "Cd to git repo and check for updates"
+      cd ${GOPATH}${srcPath}${pluginDir} && git pull
     else
       printf "\e[1;33m%-6s\e[m\n" "Downloading ${i}"
       cd ${GOPATH}${srcPath} && git clone ${i}

@@ -18,7 +18,8 @@ resource "libvirt_pool" "tf_ubuntu" {
 resource "libvirt_volume" "ubuntu-qcow2" {
   name = "ubuntu-qcow2"
   pool = libvirt_pool.tf_ubuntu.name
-  source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
+#  source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
+  source = "/home/spk.no/jea/Downloads/image/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
   format = "qcow2"
 }
 
