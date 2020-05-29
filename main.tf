@@ -1,7 +1,7 @@
 # instance the provider
 terraform {
   backend "local" {
-    path = "/home/spk.no/jea/tfstate/terraform.tfstate"
+    path = "${HOME}/tfstate/terraform.tfstate"
   }
 }
 
@@ -19,16 +19,16 @@ resource "libvirt_volume" "ubuntu-qcow2" {
   name = "ubuntu-qcow2"
   pool = libvirt_pool.tf_ubuntu.name
 #  source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
-  source = "/home/spk.no/jea/Downloads/image/bionic-server-cloudimg-amd64.img"
+  source = "${HOME}/Downloads/image/bionic-server-cloudimg-amd64.img" #18.04
   format = "qcow2"
 }
 
 data "template_file" "user_data" {
-  template = file("${path.module}/cloud_init.cfg")
+  template = file("${path.module}/tfConfig/cloud_init.cfg")
 }
 
 data "template_file" "network_config" {
-  template = file("${path.module}/network_config.cfg")
+  template = file("${path.module}/tfConfig/network_config.cfg")
 }
 
 resource "libvirt_cloudinit_disk" "commoninit" {

@@ -16,7 +16,7 @@ dir=${directories[@]}
 createDir
 
 # Download package and install dependencies
-# Download Go and Terraform
+# Download Go, Terraform and a cloud ubuntu image(18.04)
 package=${dependencies[wget]}
 downloadWget
 
@@ -36,7 +36,6 @@ addUser
 sudo modprobe vhost_net
 lsmod| grep vhost
 echo "vhost_net" | sudo tee -a /etc/modules
-
 
 #Check if KVM is working
 echo "Check if KVM is working"
@@ -76,7 +75,7 @@ printf "\e[1;32m%-6s\e[m\n" "Change to git repo dir"
 cd ${GOPATH}${srcPath}${pluginDir}
 
 printf "\e[1;32m%-6s\e[m\n" "Make terraform libvirt plugin"
- make install
+make install
 
 printf "\e[1;32m%-6s\e[m\n" "Copy plugin to Terraform folder"
 cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}

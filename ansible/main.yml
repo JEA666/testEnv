@@ -1,4 +1,0 @@
----
-
-- import_playbook: './provisioning/k8cluster.yml'
-
