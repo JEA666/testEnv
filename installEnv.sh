@@ -71,6 +71,7 @@ else
 fi
 
 # Build Terraform Libvirt plugin from src repo
+if [ -d terraform-provider-libvirt]
 printf "\e[1;32m%-6s\e[m\n" "Change to git repo dir"
 cd ${GOPATH}${srcPath}${pluginDir}
 
