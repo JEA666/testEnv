@@ -13,6 +13,7 @@ dependencies=(
   ["wget"]="
   https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
   https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
+  http://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
   "
   ["git"]="
   https://github.com/dmacvicar/terraform-provider-libvirt.git

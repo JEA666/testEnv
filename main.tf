@@ -1,10 +1,12 @@
-# instance the provider
+# Create a storage for Terraform state.
+# Need full path in path, cant use variables  
 terraform {
   backend "local" {
-    path = "${HOME}/tfstate/terraform.tfstate"
+    path = "/home/spk.no/jea/tfstate/terraform.tfstate"
   }
 }
 
+# instance the provider
 provider "libvirt" {
   uri = "qemu:///system"
 }
@@ -19,7 +21,7 @@ resource "libvirt_volume" "ubuntu-qcow2" {
   name = "ubuntu-qcow2"
   pool = libvirt_pool.tf_ubuntu.name
 #  source = "https://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img"
-  source = "${HOME}/Downloads/image/bionic-server-cloudimg-amd64.img" #18.04
+  source = "${HOME}/Downloads/images/bionic-server-cloudimg-amd64.img"
   format = "qcow2"
 }
 
