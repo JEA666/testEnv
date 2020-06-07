@@ -9,7 +9,7 @@ source ./scripts/variables/bashVar.sh
 source ./scripts/functions/functions.sh
 
 # Update ubuntu first
-sudo apt-get update && sudo apt-get upgrade -y
+#sudo apt-get update && sudo apt-get upgrade -y
 
 # Check and create directories
 dir=${directories[@]}
@@ -71,15 +71,15 @@ else
 fi
 
 # Build Terraform Libvirt plugin from src repo
-if [ -d terraform-provider-libvirt]
-printf "\e[1;32m%-6s\e[m\n" "Change to git repo dir"
-cd ${GOPATH}${srcPath}${pluginDir}
-
-printf "\e[1;32m%-6s\e[m\n" "Make terraform libvirt plugin"
-make install
-
-printf "\e[1;32m%-6s\e[m\n" "Copy plugin to Terraform folder"
-cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
+if [ -f ${HOME}${terraformPath}/terraform-provider-libvirt ]; then
+  printf "\e[1;32m%-6s\e[m\n" "File exist"
 else
-exit 0
+  printf "\e[1;32m%-6s\e[m\n" "Change to git repo dir"
+  cd ${GOPATH}${srcPath}${pluginDir}
+
+  printf "\e[1;32m%-6s\e[m\n" "Make terraform libvirt plugin"
+  make install
+
+  printf "\e[1;32m%-6s\e[m\n" "Copy plugin to Terraform folder"
+  cp ${GOBIN}${pluginDir} ${HOME}${terraformPath} 
 fi
