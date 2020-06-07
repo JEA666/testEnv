@@ -80,3 +80,6 @@ make install
 
 printf "\e[1;32m%-6s\e[m\n" "Copy plugin to Terraform folder"
 cp ${GOBIN}${pluginDir} ${HOME}${terraformPath}
+else
+exit 0
+fi
